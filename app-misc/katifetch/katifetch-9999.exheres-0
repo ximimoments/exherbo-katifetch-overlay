@@ -1,0 +1,24 @@
+# Copyright 2026 ximimoments
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI="8"
+
+require git
+
+SUMMARY="A cross-platform system information tool written in Bash"
+HOMEPAGE="https://github.com/ximimoments/katifetch"
+EGIT_REPO_URI="https://github.com/ximimoments/katifetch.git"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+DEPEND=""
+RDEPEND="
+    app-shells/bash
+"
+
+src_install() {
+    dodir /usr/bin
+    exeinto /usr/bin
+    doexe katifetch
+}

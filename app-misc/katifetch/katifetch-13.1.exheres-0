@@ -1,0 +1,37 @@
+# Copyright 2026 ximimoments
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI="8"
+
+require archive
+
+SUMMARY="A cross-platform system information tool written in Bash"
+HOMEPAGE="https://github.com/ximimoments/katifetch"
+SRC_URI="https://github.com/ximimoments/katifetch/releases/download/${PV}/katifetch-${PV}.tar.gz"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+DEPEND=""
+RDEPEND="
+    app-shells/bash
+    sys-apps/coreutils
+"
+
+src_unpack() {
+    default
+    # El tar.gz descomprime una carpeta contenedora "katifetch-13.1"
+}
+
+src_install() {
+    # Entramos a la carpeta interna extraída
+    cd "katifetch-${PV}/katifetch-main" || die
+    
+    # Instalamos el script principal en /usr/bin
+    dodir /usr/bin
+    exeinto /usr/bin
+    doexe katifetch.sh
+    
+    # Opcional: renombrarlo directamente a 'katifetch' al instalar
+    newexe katifetch.sh katifetch
+}
